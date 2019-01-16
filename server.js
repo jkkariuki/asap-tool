@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-// const articleController = require("./controllers/articleController");
 const app = express();
+const scholarshipsController = require("./controllers/scholarshipsController");
+
 const PORT = process.env.PORT || 3001;
 
 // Configure body parser for axios requests
@@ -11,14 +12,14 @@ app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
-// app.use(articleController);
+app.use(scholarshipsController);
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost/scholarshipdb"  ,
-    { useNewUrlParser: true } 
+    {useNewUrlParser: true }
  
   );
 
